@@ -9,9 +9,12 @@ import objects.User;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
-
+@Execution(ExecutionMode.CONCURRENT)
 public class PostTests {
 
     @Test
