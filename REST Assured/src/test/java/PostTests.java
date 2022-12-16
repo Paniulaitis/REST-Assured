@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.notNullValue;
 public class PostTests {
 
     @Test
-    void postUsingObjectMapping() {
+    void postUsingObjectMappingTest() {
 
         User user = new User("Ivan", "Programmer");
 
@@ -29,12 +29,31 @@ public class PostTests {
                 baseUri(BaseUrl.reqres).
                 post(EndPoints.reqresUsers).
                 then().
-                statusCode(HttpStatus.SC_CREATED).
                 body(
                         "name", Matchers.is(user.getName()),
                         "job", Matchers.is(user.getJob()),
                         "id", notNullValue(),
                         "createdAt", notNullValue()
                 );
+    }
+
+    @Test
+    void postObjectMappingTest() {
+
+        String jsonString = "{\r\n" +
+                "   \"email\" : \"sydney@fife\",\r\n" +
+                "}";
+
+        given().
+                log().method().
+                log().uri().
+                log().params().
+                contentType(ContentType.JSON).
+                body(jsonString).
+                when().
+                baseUri(BaseUrl.reqres).
+                post(EndPoints.reqresRegister).
+                then().
+                statusCode(HttpStatus.SC_BAD_REQUEST);
     }
 }

@@ -6,4 +6,6 @@ public final class EndPoints {
     public static final String agifyMichael = "/?name=michael";
     public static final String reqresUsers = "/api/users";
 
+    public static final String reqresRegister = "/api/register";
+
 }
